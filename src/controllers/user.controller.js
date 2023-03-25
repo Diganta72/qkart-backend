@@ -49,7 +49,6 @@ const { userService } = require("../services");
 
   if (!data) {
     throw new ApiError(httpStatus.NOT_FOUND, "User not found");
-  }
 
   // if (data.email != req.user.email) {
   //   throw new ApiError(
