@@ -42,20 +42,20 @@ const { userService } = require("../services");
   let data;
   // if (req.query.q === "address") {
   //   data = await userService.getUserAddressById(req.params.userId);
-  // } 
-  // else {
+  // } else {
     data = await userService.getUserById(req.params.userId);
   // }
 
   if (!data) {
     throw new ApiError(httpStatus.NOT_FOUND, "User not found");
+  }
 
-  // if (data.email != req.user.email) {
-  //   throw new ApiError(
-  //     httpStatus.FORBIDDEN,
-  //     "User not authorized to access this resource"
-  //   );
-  // }
+  if (data.email != req.user.email) {
+    throw new ApiError(
+      httpStatus.FORBIDDEN,
+      "User not authorized to access this resource"
+    );
+  }
 
   // if (req.query.q === "address") {
   //   res.send({
@@ -64,7 +64,7 @@ const { userService } = require("../services");
   // } else {
     res.send(data);
   // }
-});
+})
 
 
 module.exports = {
